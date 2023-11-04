@@ -74,11 +74,11 @@ import './Style.scss'
   
 
   return (
-    <div className="Authformcontainer">
-      <form className="Authform">
-        <div className="Authformcontent">
-          <h3 className="Authformtitle" >Sign UP</h3>
-          <div className="textcenter">
+    <div className="Auth-form-container">
+      <form className="Auth-form">
+        <div className="Auth-form-content">
+          <h3 className="Auth-form-title" >Sign UP</h3>
+          <div className="text-center">
            <p><Link to='/login'>Already have account?</Link></p>
           </div>
           <div className="form-group mt-3">

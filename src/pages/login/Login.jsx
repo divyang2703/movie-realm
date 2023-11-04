@@ -4,10 +4,14 @@ import React, { useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 // import { useAuth } from "../../context/AuthContext";
 
-// import cookies from 'js-cookie';
+import cookies from 'js-cookie';
 import './Style.scss'
+import Cookies from "js-cookie";
 
 function Login(props) {
   const navigate = useNavigate();
@@ -42,6 +46,7 @@ function Login(props) {
 
     // cookies.setItem('email', value.email)
     localStorage.setItem('email', value.email)
+    Cookies.set('email', value.email);
 
     setSubmitButtonDisabled(true);
 

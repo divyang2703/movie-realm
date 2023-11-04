@@ -4,7 +4,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-// import { Cookies } from "js-cookie";
+import   Cookies  from "js-cookie";
 
 import "./Style.scss";
 
@@ -14,6 +14,7 @@ import logo from "../../assets/Movie-Realm.png";
 
 const Header = () => {
     const [show, setShow] = useState("top");
+    
     const [lastScrollY, setLastScrollY] = useState(0);
     const [mobileMenu, setMobileMenu] = useState(false);
     const [query, setQuery] = useState("");
@@ -73,6 +74,21 @@ const Header = () => {
         }
         setMobileMenu(false);
     }; 
+    console.log(Cookies.get("email"))
+
+
+    const cookieClear = () => {
+        Cookies.remove("email");
+        localStorage.removeItem("email")
+        navigate("/login")
+    }
+    
+    // if(localStorage.getItem("email")===true){
+    //     setLoginEvent(true)
+    //     navigate("/")
+    // }else{
+    //     setLoginEvent(false)
+    // }
     
 
     return (
@@ -98,15 +114,18 @@ const Header = () => {
                     >
                         TV Shows
                     </li>
+                    <Link to="/login">
+                    <li className="menuItem">
+                        {/* {Cookies.get("email") ? "Logout" : "Login"} */ }
+                        {
+                            Cookies.get("email") || localStorage.getItem("email") ? <button className="btn btn-primary" onClick={cookieClear}>Logout</button> : <button className="btn btn-primary">Login</button>  
+                        }
+                    </li>
+                    </Link>
                     <li className="menuItem">
                         <HiOutlineSearch onClick={openSearch} />
                     </li>
-                    <Link to="/login">
-                    <li className="menuItem">
-                        {localStorage.getItem("email") ? "Logout" : "Login"}
-                        
-                    </li>
-                    </Link>
+                    
                 </ul>
 
                 <div className="mobileMenuItems">
